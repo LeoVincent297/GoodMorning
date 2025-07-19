@@ -4,14 +4,14 @@ Un assistant Python automatisé pour bien commencer la journée !
 
 Chaque matin, ce script récupère et envoie par email :
 
-- 📍 La météo de vos villes préférées
-- 🚇 L’état des lignes de métro importantes
-- 🧭 Un itinéraire Google Maps vers votre lieu de travail
-- 📝 (Optionnel) Un fichier de note iCloud
+- La météo de vos villes préférées
+- L’état des lignes de métro importantes
+- Un itinéraire Google Maps vers votre lieu de travail
+- (Optionnel) Un fichier de note iCloud
 
 ---
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```bash
 GoodMorning/
@@ -26,23 +26,23 @@ GoodMorning/
 ├── main.py                # Script principal
 ├── requirements.txt       # Dépendances Python
 └── README.md              # Documentation
-
-⚙️ Installation
-🔧 1. Cloner le dépôt
+```
+## Installation
+### 1. Cloner le dépôt
 
 git clone https://github.com/<ton-utilisateur>/GoodMorning.git
 cd GoodMorning
 
-🐍 2. Créer un environnement virtuel
+### 2. Créer un environnement virtuel
 
 python3 -m venv env
 source env/bin/activate
 
-📦 3. Installer les dépendances
+### 3. Installer les dépendances
 
 pip install -r requirements.txt
 
-🔐 Configuration
+## Configuration
 
 Ajoute dans main.py ou un fichier .env (à sécuriser) les informations suivantes :
 
@@ -58,27 +58,29 @@ DESTINATAIRE = "destinataire@email.com"
 WEATHER_API_KEY = "ta_cle_openweather"
 GOOGLE_MAPS_API_KEY = "ta_cle_google_maps"
 
-🧪 Lancement
-
+## Lancement
+```bash
 python3 main.py
-
+```
 Ou bien avec screen pour l’exécuter en arrière-plan :
-
+```bash
 screen -S morning
 source env/bin/activate
 python3 main.py
+```
 
-🔄 Programmation automatique
+## Programmation automatique
 
 Le script utilise schedule pour s’exécuter tous les jours à 08h00 :
-
+```python
 schedule.every().day.at("08:00").do(update_info)
+```
 
-⏰ Tu peux modifier l’heure comme tu veux.
-📤 Envoi d’email
+Tu peux modifier l’heure comme tu veux.
+Envoi d’email
 
 Le script assemble les infos météo, métro, itinéraire, puis envoie un email au destinataire.
-✅ TODO / Améliorations possibles
+## TODO / Améliorations possibles
 
     Interface Web ou CLI
 
@@ -88,9 +90,8 @@ Le script assemble les infos météo, métro, itinéraire, puis envoie un email 
 
     Intégration iCalendar / Google Calendar
 
-🧾 Licence
+## Licence
 
-Projet personnel développé sur Raspberry Pi. Licence libre à définir si besoin.
-
+Projet personnel développé sur Raspberry Pi.
 
 ---

@@ -57,7 +57,7 @@ Bonne journée !"""
 
 def main():
     """Fonction principale qui planifie l'exécution quotidienne"""
-    heure = "12:00"
+    heure = "12:53"
     schedule.every().day.at(heure).do(update_info)
     print(f"Le script est en cours d'exécution. Une notification à {heure}")
 

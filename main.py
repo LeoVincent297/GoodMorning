@@ -24,7 +24,7 @@ print(f"Email configuré : {EMAIL_ADDRESS}")
 print(f"Clé météo configurée : {'Oui' if WEATHER_API_KEY else 'Non'}")
 print(f"Clé RATP configurée : {'Oui' if RATP_API_KEY else 'Non'}")
 print(f"Clé Google Maps configurée : {'Oui' if GOOGLE_MAPS_API_KEY else 'Non'}")
-print(f"Chemin iCloud : {ICLOUD_PATH}")
+print(f"Chemin fichier text : {ICLOUD_PATH}")
 
 def get_weather():
     """Récupère la météo à Paris, Saint-Ouen et Boulogne-Billancourt via OpenWeatherMap API"""
@@ -164,7 +164,7 @@ def write_to_icloud(content):
 
         with open(ICLOUD_PATH, 'w', encoding='utf-8') as f:
             f.write(content)
-        print("Informations écrites avec succès dans le fichier iCloud!")
+        print("Informations écrites avec succès dans le fichier .txt ")
     except Exception as e:
         print(f"Erreur lors de l'écriture dans le fichier: {str(e)}")
 

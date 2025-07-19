@@ -29,19 +29,21 @@ GoodMorning/
 ```
 ## Installation
 ### 1. Cloner le dépôt
-
+```bash
 git clone https://github.com/<ton-utilisateur>/GoodMorning.git
 cd GoodMorning
+```
 
 ### 2. Créer un environnement virtuel
-
+```bash
 python3 -m venv env
 source env/bin/activate
+```
 
 ### 3. Installer les dépendances
-
+```bash
 pip install -r requirements.txt
-
+```
 ## Configuration
 
 Ajoute dans main.py ou un fichier .env (à sécuriser) les informations suivantes :

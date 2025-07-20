@@ -28,9 +28,9 @@ print(f"Email configuré : {EMAIL_ADDRESS}")
 print(f"Clé météo configurée : {'Oui' if WEATHER_API_KEY else 'Non'}")
 print(f"Clé RATP configurée : {'Oui' if RATP_API_KEY else 'Non'}")
 print(f"Clé Google Maps configurée : {'Oui' if GOOGLE_MAPS_API_KEY else 'Non'}")
-print(f"Chemin iCloud : {PATH_RECAP}")
+print(f"Chemin recap.txt : {PATH_RECAP}")
 
-def update_info():
+def update_info(compt, heure):
     """Met à jour les informations et les envoie par email et sur iCloud"""
     # Récupération des informations
     weather_info = get_weather(WEATHER_API_KEY)
@@ -46,7 +46,7 @@ def update_info():
 🚇 État des lignes :
 {metro_info}
 
-🗺️ Itinéraire du jour :
+🗺️ Itinéraire le plus court :
 {route_info}
 
 Bonne journée !"""
@@ -54,11 +54,14 @@ Bonne journée !"""
     # Envoi par email et écriture sur iCloud
     send_email(content, EMAIL_ADDRESS, EMAIL_PASSWORD, DESTINATAIRE)
     write_to_icloud(content, PATH_RECAP)
+    compt += 1
+    print(f"A demain pour une notification à {heure}")
 
 def main():
     """Fonction principale qui planifie l'exécution quotidienne"""
-    heure = "12:53"
-    schedule.every().day.at(heure).do(update_info)
+    heure = "14:00"
+    compt = 0
+    schedule.every().day.at(heure).do(update_info(compt, heure))
     print(f"Le script est en cours d'exécution. Une notification à {heure}")
 
     while True:

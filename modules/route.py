@@ -25,23 +25,32 @@ def get_route(api_key):
         route = data['routes'][0]['legs'][0]
         steps = []
 
-        for step in route['steps']:
+        steps = []
+
+        for step in route.get('steps', []):
+            instruction = step.get('html_instructions', '')
+            
             if 'transit_details' in step:
                 transit = step['transit_details']
-                line = transit.get('line', {}).get('short_name', '')
-                vehicle = transit.get('line', {}).get('vehicle', {}).get('name', '')
-                steps.append(f"• {step['html_instructions']} (Ligne {line} {vehicle})")
+                line_info = transit.get('line', {})
+                line_name = line_info.get('short_name', '')
+                vehicle_type = line_info.get('vehicle', {}).get('name', '')
+                transit_info = f" (Ligne {line_name} - {vehicle_type})" if line_name or vehicle_type else ''
             else:
-                steps.append(f"• {step['html_instructions']}")
+                transit_info = ''
 
-        duration = route['duration']['text']
-        distance = route['distance']['text']
+            steps.append(f"• {instruction}{transit_info}")
 
-        return f"""Durée estimée : {duration}
-                Distance : {distance}
+        duration = route.get('duration', {}).get('text', 'N/A')
+        distance = route.get('distance', {}).get('text', 'N/A')
 
-                Itinéraire :
-                {chr(10).join(steps)}"""
+        return (
+            f"Durée estimée : {duration}\n"
+            f"Distance : {distance}\n\n"
+            "Itinéraire :\n"
+            f"{chr(10).join(steps)}"
+        )
+
 
     except Exception as e:
         return f"Erreur lors de la récupération de l'itinéraire: {str(e)}"
